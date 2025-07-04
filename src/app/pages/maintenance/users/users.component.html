@@ -1,0 +1,99 @@
+<app-breadcrumbs title="usuarios" />
+<div class="row animate fadeIn fast">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+
+        <input type="text" class="form-control" #txtSearch (keyup)="search(txtSearch.value)"
+          placeholder="Buscar usuario...">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (loading()) {
+<div class="row animate fadeIn fast">
+  <div class="col-12">
+    <div class="alert alert-info text-center">
+      <h4 class="alert-heading">Cargando...</h4>
+      <i class="fa fa-refresh fa-spin fa-2x"></i>
+      <p class="mb-0">Por favor espere</p>
+    </div>
+  </div>
+</div>
+}
+
+<div class="row">
+  <div class="col-12 d-flex flex-row justify-content-end">
+    <button type="button" class="btn waves-effect waves-light btn-primary" (click)="createUser()">
+      Agregar Usuario
+    </button>
+  </div>
+</div>
+
+@if (!loading()) {
+<div class="row animate fadeIn fast">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        @if(txtSearch.value.length === 0) {
+        <h4 class="card-title">Total usuarios ({{ total() }})</h4>
+        <h6 class="card-subtitle">Usuarios registrados. Pagina ({{ page() }})</h6>
+        }
+
+        @if(txtSearch.value.length !== 0) {
+        <h4 class="card-title">Coincidencias ({{ totalUsers() }})</h4>
+        }
+
+
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th class="w140">Rol</th>
+                <th class="text-nowrap w100">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              @for (user of users(); track $index) {
+              <tr>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>
+                  <select class="form-control" [(ngModel)]="user.role" (change)="updateRole(user)">
+                    <option value="USER">USER</option>
+                    <option value="ADMIN">ADMIN</option>
+                  </select>
+                </td>
+
+                <td class="text-nowrap text-center">
+
+                  <a data-toggle="tooltip" data-original-title="Delete" (click)="deleteUser(user)">
+                    <i class="fa fa-trash text-danger cursor"></i>
+                  </a>
+
+                </td>
+              </tr>
+              }
+
+            </tbody>
+          </table>
+        </div>
+
+        @if(txtSearch.value.length === 0) {
+
+        <button (click)="changePage(-1)" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Atras</button>
+        &nbsp;
+
+        <button (click)="changePage(+1)" class="btn btn-secondary">Sig <i class="fa fa-arrow-right"></i></button>
+        }
+
+      </div>
+    </div>
+  </div>
+</div>
+}

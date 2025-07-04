@@ -1,0 +1,58 @@
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<aside class="left-sidebar">
+  <!-- Sidebar scroll-->
+  <div class="scroll-sidebar">
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav">
+      <ul id="sidebarnav">
+        <li class="user-profile">
+          <a class="has-arrow waves-effect waves-dark" aria-expanded="false">
+            <img src="./../../../assets/images/users/1.jpg" [alt]="user().name" />
+            <span class="hide-menu">{{user().name}}</span>
+          </a>
+          <ul aria-expanded="false" class="collapse">
+            <li><a routerLink='dashboard//my-profile'>Mi Perfil </a></li>
+            <!-- <li><a href="javascript:void()">My Balance</a></li> -->
+            <!-- <li><a href="javascript:void()">Inbox</a></li> -->
+            <li><a routerLink='/dashboard/account-settings'>Ajustes</a></li>
+            <li><a (click)="logout()" class="cursor">Salir</a></li>
+          </ul>
+        </li>
+        <li class="nav-devider"></li>
+        <li class="nav-small-cap">Navegación</li>
+
+        @for(item of menuItems(); track item.title ) {
+        <li>
+          <a class="has-arrow waves-effect waves-dark" aria-expanded="false">
+            <i [class]="item.icon"></i>
+            <span class="hide-menu">{{ item.title }}
+              <span class="label label-rouded label-themecolor pull-right">
+                {{ item.submenu.length }}
+              </span>
+            </span>
+          </a>
+          <ul aria-expanded="false" class="collapse">
+
+            @for( subMenuItem of item.submenu; track subMenuItem.title ){
+            <li>
+              <a [routerLink]="subMenuItem.url">{{ subMenuItem.title }}</a>
+            </li>
+            }
+
+          </ul>
+        </li>
+        }@empty {
+        <li class="nav-small-cap">Empty</li>
+        }
+
+      </ul>
+    </nav>
+    <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
+</aside>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->

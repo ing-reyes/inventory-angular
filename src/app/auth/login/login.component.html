@@ -1,0 +1,45 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<section id="wrapper">
+    <div class="login-register" style="background-image:url(../assets/images/background/background-login.jpg);">
+        <div class="login-box card">
+            <div class="card-body">
+                <form class="form-horizontal form-material" [formGroup]="loginForm" (submit)="login()" id="loginform">
+                    <h3 class="box-title m-b-20 text-center">Iniciar Sesión</h3>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="text" formControlName="email" required
+                                placeholder="Correo electronico">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="password" required formControlName="password"
+                                placeholder="Contraseña">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <div class="checkbox checkbox-info pull-left p-t-0">
+                                <input id="checkbox-signup" type="checkbox" formControlName="remember"
+                                    class="filled-in chk-col-light-blue">
+                                <label for="checkbox-signup"> Recuerdame </label>
+                            </div>
+                            <a routerLink="../forgot-password" id="to-recover" class="text-dark pull-right"><i
+                                    class="fa fa-lock m-r-5"></i>Olvide la contraseña</a>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <div class="col-xs-12 p-b-20">
+                            <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">Entrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->

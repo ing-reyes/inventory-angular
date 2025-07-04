@@ -1,0 +1,104 @@
+<app-breadcrumbs title="Editar producto" />
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="updateProductForm" (submit)="updateProduct()" class="form-horizontal form-material">
+                <div class="form-body">
+                    <h3 class="card-title">Actualizar datos</h3>
+                    <hr>
+                    <div class="row p-t-20">
+                        <div class="col-md-6">
+                            <div class="form-group has-danger">
+                                <label class="control-label">Nombre de producto</label>
+                                <input type="text" id="name" class="form-control" formControlName="name"
+                                    placeholder="Producto" [value]="product().name">
+                                @if(isValidField('productName')) {
+                                <small class="form-control-feedback"> Este campo es requerido. </small>
+                                }
+                            </div>
+                        </div>
+                        <!--/span-->
+                        
+                        <div class="col-md-4">
+                            <div class="form-group has-danger">
+                                <label class="control-label">Categoria</label>
+                                @if (product().id) {
+                                <select class="form-control custom-select" formControlName="category"
+                                    data-placeholder="Seleccione la Categoria" tabindex="1">
+                                    <option value="">Seleccione una categoria</option>
+
+                                    @for(category of categories(); track $index){
+                                    <option [value]="category.id">{{category.name}}</option>
+                                    }
+                                </select>
+                                } @else {
+                                <div>Cargando producto...</div>
+                                }
+                            </div>
+                        </div>
+
+                        <!--/span-->
+                    </div>
+
+                    <!--/row-->
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group m-b-0 has-danger">
+                                <label class="control-label">Cantidad</label>
+                                <div class="input-group bootstrap-touchspin">
+                                    <span class="input-group-btn">
+                                    </span>
+                                    <span class="input-group-addon bootstrap-touchspin-prefix">$</span>
+                                    <input id="tch2" type="number" value="0" name="tch2" class="form-control"
+                                        data-bts-button-down-class="btn btn-secondary btn-outline"
+                                        data-bts-button-up-class="btn btn-secondary btn-outline" style="display: block;"
+                                        formControlName="stock" [value]="product().stock">
+                                    <span class="input-group-addon bootstrap-touchspin-postfix"
+                                        style="display: none;"></span>
+                                    <span class="input-group-btn">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="form-group m-b-0 has-danger">
+                                <label class="control-label">Fecha de Salida</label>
+                                <div class="input-group bootstrap-touchspin">
+                                    <span class="input-group-btn">
+                                    </span>
+                                    <span class="input-group-addon bootstrap-touchspin-prefix"></span>
+                                    <input id="tch2" type="date" value="0" name="tch2" class="form-control"
+                                        data-bts-button-down-class="btn btn-secondary btn-outline"
+                                        data-bts-button-up-class="btn btn-secondary btn-outline" style="display: block;"
+                                        formControlName="departureDate" [value]="product().departureDate">
+                                    <span class="input-group-addon bootstrap-touchspin-postfix"
+                                        style="display: none;"></span>
+                                    <span class="input-group-btn">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--/row-->
+                    <div class="row">
+                        <div class="col-md-4 m-t-10">
+                            <div class="form-group">
+                                <label class="control-label">Descripción</label>
+                                <textarea class="form-control" formControlName="description" rows="5"
+                                    [value]="product().description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/row-->
+                </div>
+                <!-- Agregar un margen superior -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Editar</button>
+                    <button type="button" class="btn btn-inverse" (click)="cancel()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
