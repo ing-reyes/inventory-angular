@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { ApiAllResponse } from '@interfaces/api-response.interface';
 import { Category } from '@entities/category.entity';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
 import { UsersService } from '@services/users.service';
 
 @Injectable({
