@@ -40,14 +40,83 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/maintenance/users/users.component'),
       },
       //* Inventory
+
+      // Categorías
       {
-        path: 'dashboard/categories',
-        title: 'Categoría',
+        path: 'dashboard/informatica',
+        title: 'Departamento de Informática y Telemática',
         data: {
-          title: 'Categoría',
+          title: 'Departamento de Informática y Telemática',
         },
-        loadComponent: () => import('./pages/inventory/categories/categories.component'),
+        loadComponent: () => import('./pages/inventory/categories/informatica-telematica/informatica-telematica.component'),
       },
+
+      {
+        path: 'dashboard/planificacion',
+        title: 'Departamento de Planificación',
+        data: {
+          title: 'Departamento de Planificación',
+        },
+        loadComponent: () => import('./pages/inventory/categories/planificacion/planificacion.component'),
+      },
+
+      {
+        path: 'dashboard/bienes',
+        title: 'Departamento de Sesión de Bienes',
+        data: {
+          title: 'Departamento de Sesión de Bienes',
+        },
+        loadComponent: () => import('./pages/inventory/categories/sesion-bienes/sesion-bienes.component'),
+      },
+
+      {
+        path: 'dashboard/contabilidad',
+        title: 'Departamento de Contabilidad y Presupuesto',
+        data: {
+          title: 'Departamento de Contabilidad y Presupuesto',
+        },
+        loadComponent: () => import('./pages/inventory/categories/contabilidad-presupuesto/contabilidad-presupuesto.component'),
+      },
+
+      {
+        path: 'dashboard/bienestar-social',
+        title: 'Departamento de Bienestar Social',
+        data: {
+          title: 'Departamento de Bienestar Social',
+        },
+        loadComponent: () => import('./pages/inventory/categories/bienestar-social/bienestar-social.component'),
+      },
+
+      {
+        path: 'dashboard/nomina',
+        title: 'Departamento de Nomina',
+        data: {
+          title: 'Departamento de Nomina',
+        },
+        loadComponent: () => import('./pages/inventory/categories/nomina/nomina.component'),
+      },
+
+      {
+        path: 'dashboard/registro-control',
+        title: 'Departamento de Registro y Control',
+        data: {
+          title: 'Departamento de Registro y Control',
+        },
+        loadComponent: () => import('./pages/inventory/categories/registro-control/registro-control.component'),
+      },
+
+      {
+        path: 'dashboard/ingreso-egreso',
+        title: 'Departamento de Ingreso y Egreso',
+        data: {
+          title: 'Departamento de Ingreso y Egreso',
+        },
+        loadComponent: () => import('./pages/inventory/categories/ingreso-egreso/ingreso-egreso.component'),
+      },
+
+
+
+      // Productos
       {
         path: 'dashboard/products',
         title: 'Producto',

@@ -24,12 +24,52 @@ export class SidebarService {
       ]
     },
     {
-      title: 'Inventario',
-      icon: 'mdi mdi-format-list-bulleted',
+      title: "Inventario",
+      icon: "mdi mdi-format-list-bulleted",
       submenu: [
-        { title: 'Productos', url: './dashboard/products' },
-        { title: 'Categorias', url: './dashboard/categories' },
-      ]
-    }
+        { title: "Productos", url: "./dashboard/products" },
+        {
+          title: "Categorias",
+          submenu: [
+            {
+              title: "División de Informática",
+              submenu: [
+                {
+                  title: "Departamento de Informática y Telemática",
+                  url: "./dashboard/informatica",
+                },
+              ],
+            },
+            {
+              title: "División de Planificación",
+              url: "./dashboard/planificacion",
+            },
+            {
+              title: "División de Administración y Presupuesto",
+              submenu: [
+                {
+                  title: "Departamento de Bienes y Servicios Generales",
+                  submenu: [{ title: "Sesión de Bienes", url: "./dashboard/bienes" }],
+                },
+                {
+                  title: "Departamento de Contabilidad y Presupuesto",
+                  url: "./dashboard/contabilidad",
+                },
+              ],
+            },
+            {
+              title: "División de Recursos Humanos",
+              submenu: [
+                { title: "Departamento de Bienestar Social", url: "./dashboard/bienestar-social" },
+                { title: "Nómina", url: "./dashboard/nomina" },
+                { title: "Registro y Control", url: "./dashboard/registro-control" },
+                { title: "Ingreso y Egreso", url: "./dashboard/ingreso-egreso" },
+              ],
+            },
+          ],
+        },
+      ],
+    },
   ])
 }
+

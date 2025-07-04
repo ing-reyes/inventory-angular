@@ -14,8 +14,6 @@
           </a>
           <ul aria-expanded="false" class="collapse">
             <li><a routerLink='dashboard//my-profile'>Mi Perfil </a></li>
-            <!-- <li><a href="javascript:void()">My Balance</a></li> -->
-            <!-- <li><a href="javascript:void()">Inbox</a></li> -->
             <li><a routerLink='/dashboard/account-settings'>Ajustes</a></li>
             <li><a (click)="logout()" class="cursor">Salir</a></li>
           </ul>
@@ -34,19 +32,67 @@
             </span>
           </a>
           <ul aria-expanded="false" class="collapse">
-
             @for( subMenuItem of item.submenu; track subMenuItem.title ){
             <li>
+              @if (subMenuItem.submenu && subMenuItem.submenu.length > 0) {
+              <!-- Nivel 2 con submenu -->
+              @if(subMenuItem.submenu.url){
+              <a [routerLink]="subMenuItem.submenu.url" class="has-arrow waves-effect waves-dark" aria-expanded="false">
+                <span class="hide-menu">{{ subMenuItem.title }}</span>
+              </a>
+              }@else{
+              <a class="has-arrow waves-effect waves-dark" aria-expanded="false">
+                <span class="hide-menu">{{ subMenuItem.title }}</span>
+              </a>
+              }
+              <ul aria-expanded="false" class="collapse">
+                @for( subSubMenuItem of subMenuItem.submenu; track subSubMenuItem.title ){
+                <li>
+                  @if (subSubMenuItem.submenu && subSubMenuItem.submenu.length > 0) {
+                  <!-- Nivel 3 con submenu -->
+                  <a class="has-arrow waves-effect waves-dark" aria-expanded="false">
+                    <span class="hide-menu">{{ subSubMenuItem.title }}</span>
+                  </a>
+                  <ul aria-expanded="false" class="collapse">
+                    @for( subSubSubMenuItem of subSubMenuItem.submenu; track subSubSubMenuItem.title ){
+                    <li>
+                      @if (subSubSubMenuItem.submenu && subSubSubMenuItem.submenu.length > 0) {
+                      <!-- Nivel 4 con submenu -->
+                      <a class="has-arrow waves-effect waves-dark" aria-expanded="false">
+                        <span class="hide-menu">{{ subSubSubMenuItem.title }}</span>
+                      </a>
+                      <ul aria-expanded="false" class="collapse">
+                        @for( finalMenuItem of subSubSubMenuItem.submenu; track finalMenuItem.title ){
+                        <li>
+                          <a [routerLink]="finalMenuItem.url || ''">{{ finalMenuItem.title }}</a>
+                        </li>
+                        }
+                      </ul>
+                      } @else {
+                      <!-- Nivel 4 simple -->
+                      <a [routerLink]="subSubSubMenuItem.url || ''">{{ subSubSubMenuItem.title }}</a>
+                      }
+                    </li>
+                    }
+                  </ul>
+                  } @else {
+                  <!-- Nivel 3 simple -->
+                  <a [routerLink]="subSubMenuItem.url || ''">{{ subSubMenuItem.title }}</a>
+                  }
+                </li>
+                }
+              </ul>
+              } @else {
+              <!-- Nivel 2 simple -->
               <a [routerLink]="subMenuItem.url">{{ subMenuItem.title }}</a>
+              }
             </li>
             }
-
           </ul>
         </li>
         }@empty {
         <li class="nav-small-cap">Empty</li>
         }
-
       </ul>
     </nav>
     <!-- End Sidebar navigation -->
