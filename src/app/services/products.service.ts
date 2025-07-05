@@ -38,4 +38,8 @@ export class ProductsService {
   search(term: string): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.url}/api/products/search/${term}`, this.usersService.headers);
   }
+
+  searchByCategory(category: string): Observable<ApiAllResponse<Product>> {
+    return this.http.get<ApiAllResponse<Product>>(`${this.url}/api/products/category/${category}`, this.usersService.headers);
+  }
 }

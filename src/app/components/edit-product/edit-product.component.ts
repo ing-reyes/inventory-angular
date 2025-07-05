@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '@entities/category.entity';
 import { Product } from '@entities/product.entity';
+import { CategoriesDepartment } from '@enums/categories-departament.enum';
 import { RegisterProductForm } from '@interfaces/register-product-form.interface';
 import { CategoriesService } from '@services/categories.service';
 import { ProductsService } from '@services/products.service';
@@ -17,6 +18,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './edit-product.component.css'
 })
 export default class EditProductComponent implements OnInit, OnDestroy {
+  public categoriesDepartaments = signal<CategoriesDepartment[]>(Object.values(CategoriesDepartment));
   public fb = inject(FormBuilder);
   public updateProductForm = this.fb.group({
     name: ['', Validators.required],
@@ -41,7 +43,6 @@ export default class EditProductComponent implements OnInit, OnDestroy {
   public router = inject(Router);
 
   ngOnInit(): void {
-    this.loadCategories();
 
     // get id by params
     this.activatedRoute.params.subscribe(params => {
@@ -54,7 +55,7 @@ export default class EditProductComponent implements OnInit, OnDestroy {
             this.updateProductForm.patchValue({
               name: resp.name,
               stock: resp.stock,
-              category: resp.category.name,
+              category: resp.category,
               description: resp.description,
               entryDate: resp.entryDate,
               departureDate: resp.departureDate ?? null,
@@ -71,11 +72,6 @@ export default class EditProductComponent implements OnInit, OnDestroy {
     this.loadCategoriesSubs.unsubscribe();
   }
 
-  loadCategories() {
-    this.loadCategoriesSubs = this.categoriesService.loadCategories().subscribe((resp) => {
-      this.categories.set(resp.data);
-    });
-  }
   updateProduct() {
     this.formSubmitted.set(true);
 

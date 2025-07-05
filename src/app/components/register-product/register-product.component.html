@@ -24,8 +24,8 @@
                                 <select class="form-control custom-select" formControlName="category"
                                     data-placeholder="Seleccione la Categoria" tabindex="1">
                                     <option value="">Seleccione una categoria</option>
-                                    @for(category of categories(); track $index){
-                                    <option [value]="category.id">{{category.name}}</option>
+                                    @for(category of categoriesDepartaments(); track $index){
+                                    <option [value]="category">{{category}}</option>
                                     }
                                 </select>
                             </div>
