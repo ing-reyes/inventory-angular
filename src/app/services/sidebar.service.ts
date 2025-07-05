@@ -42,7 +42,12 @@ export class SidebarService {
             },
             {
               title: "División de Planificación",
-              url: "./dashboard/planificacion",
+              submenu: [
+                {
+                  title: "Departamento de Planificación",
+                  url: "./dashboard/planificacion",
+                },
+              ],
             },
             {
               title: "División de Administración y Presupuesto",

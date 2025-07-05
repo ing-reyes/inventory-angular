@@ -3,12 +3,13 @@ import { FormsModule } from '@angular/forms';
 import {  Subscription } from 'rxjs';
 
 import { BreadcrumbsComponent } from '@shared/breadcrumbs/breadcrumbs.component';
-import { CategoriesService } from '@services/categories.service';
 import { ProductsService } from '../../services/products.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Product } from '@entities/product.entity';
 import { Category } from '@entities/category.entity';
+import { CategoriesDepartment } from '@enums/categories-departament.enum';
+import { UsersService } from '@services/users.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,8 @@ import { Category } from '@entities/category.entity';
 })
 export default class DashboardComponent implements OnInit, OnDestroy {
   private readonly productsService = inject(ProductsService);
-  private readonly categoriesService = inject(CategoriesService);
+  private readonly usersService = inject(UsersService);
+  
   
   public products = signal<Product[]>([]);
   public categories = signal<Category[]>([]);
@@ -32,22 +34,22 @@ export default class DashboardComponent implements OnInit, OnDestroy {
   
   
   public totalInventory = signal<number>(0);
-  public totalCategories = signal<number>(0);
+  public totalCategories = signal<CategoriesDepartment[]>(Object.values(CategoriesDepartment));
   
   public totalValuePerCategory = signal<number>(0);
-
+  
+  public totalUsers = signal<number>(0);
+  
   // Subscriptions
   private loadProductsSubs: Subscription = new Subscription();
-  private loadCategoriesSubs: Subscription = new Subscription();
 
   ngOnInit(): void {
     this.loadProducts();
-    this.loadCategories();
+    this.loadUsers();
   }
 
   ngOnDestroy(): void {
     this.loadProductsSubs.unsubscribe();
-    this.loadCategoriesSubs.unsubscribe();
   }
 
   loadProducts() {
@@ -63,14 +65,13 @@ export default class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 
-  loadCategories() {
-    this.loadCategoriesSubs = this.categoriesService.loadCategories().subscribe((resp) => {
-      this.categories.update(() => resp.data);
-      this.totalCategories.update(() => resp.total);
+  loadUsers() {
+    this.usersService.loadUsers(this.page()).subscribe(resp => {
+      const { total } = resp;
+      this.totalUsers.update(() => total);
     });
   }
 
-  
   changePage(value: number) {
     this.page .update((currentPage) => currentPage + value);
 

@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-lg-3">
         <div class="card bg-info">
-            <div class="card-body cursor" routerLink="./products">
+            <div class="card-body cursor" [routerLink]="['/dashboard/products']">
                 <div class="d-flex no-block">
                     <div class="m-r-20 align-self-center"><img src="../assets/images/icon/assets-w.png" alt="Income">
                     </div>
@@ -23,13 +23,13 @@
     </div>
     <div class="col-lg-3">
         <div class="card bg-info">
-            <div class="card-body cursor" routerLink="./categories">
+            <div class="card-body">
                 <div class="d-flex no-block">
                     <div class="m-r-20 align-self-center"><img src="../assets/images/icon/expense-w.png" alt="Income">
                     </div>
                     <div class="align-self-center">
-                        <h6 class="text-white m-t-10 m-b-0">Total Categorias</h6>
-                        <h2 class="m-t-0 text-white">{{totalCategories()}}</h2>
+                        <h6 class="text-white m-t-10 m-b-0">Total Depart...</h6>
+                        <h2 class="m-t-0 text-white">{{totalCategories().length}}</h2>
                     </div>
                 </div>
             </div>
@@ -37,13 +37,13 @@
     </div>
     <div class="col-lg-3">
         <div class="card bg-info">
-            <div class="card-body cursor" routerLink="./sales">
+            <div class="card-body">
                 <div class="d-flex no-block">
-                    <div class="m-r-20 align-self-center"><img src="../assets/images/icon/income-w.png" alt="Income">
+                    <div class="m-r-20 align-self-center"><img src="../assets/images/icon/expense-w.png" alt="Income">
                     </div>
                     <div class="align-self-center">
-                        <h6 class="text-white m-t-10 m-b-0">Total Ventas</h6>
-                        <h2 class="m-t-0 text-white">{{0}}</h2>
+                        <h6 class="text-white m-t-10 m-b-0">Total Divisiones</h6>
+                        <h2 class="m-t-0 text-white">{{4}}</h2>
                     </div>
                 </div>
             </div>
@@ -51,13 +51,13 @@
     </div>
     <div class="col-lg-3">
         <div class="card bg-info">
-            <div class="card-body cursor" routerLink="./suppliers">
+            <div class="card-body cursor" [routerLink]="['/dashboard/users']">
                 <div class="d-flex no-block">
                     <div class="m-r-20 align-self-center"><img src="../assets/images/icon/staff-w.png" alt="Income">
                     </div>
                     <div class="align-self-center">
-                        <h6 class="text-white m-t-10 m-b-0">Total Proveedores</h6>
-                        <h2 class="m-t-0 text-white">{{0}}</h2>
+                        <h6 class="text-white m-t-10 m-b-0">Total Usuarios</h6>
+                        <h2 class="m-t-0 text-white">{{totalUsers()}}</h2>
                     </div>
                 </div>
             </div>
