@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Category } from '@entities/category.entity';
 import { CategoriesDepartment } from '@enums/categories-departament.enum';
@@ -7,7 +7,6 @@ import { CategoriesService } from '@services/categories.service';
 import { ProductsService } from '@services/products.service';
 import { SweetalertService } from '@services/sweetalert.service';
 import { BreadcrumbsComponent } from '@shared/breadcrumbs/breadcrumbs.component';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register-product',
@@ -15,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './register-product.component.html',
   styleUrl: './register-product.component.css'
 })
-export default class RegisterProductComponent implements OnDestroy {
+export default class RegisterProductComponent {
   public categoriesDepartaments = signal<CategoriesDepartment[]>(Object.values(CategoriesDepartment));
   
 
@@ -35,12 +34,8 @@ export default class RegisterProductComponent implements OnDestroy {
 
   public categories = signal<Category[]>([])
 
-  private loadCategoriesSubs = new Subscription();
 
   public formSubmitted = signal<boolean>(false);
-  ngOnDestroy(): void {
-    this.loadCategoriesSubs.unsubscribe();
-  }
 
   registerProduct() {
     this.formSubmitted.set(true);

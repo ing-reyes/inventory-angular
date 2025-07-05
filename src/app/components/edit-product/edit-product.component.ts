@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '@entities/category.entity';
@@ -9,7 +9,6 @@ import { CategoriesService } from '@services/categories.service';
 import { ProductsService } from '@services/products.service';
 import { SweetalertService } from '@services/sweetalert.service';
 import { BreadcrumbsComponent } from '@shared/breadcrumbs/breadcrumbs.component';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-product',
@@ -17,7 +16,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './edit-product.component.html',
   styleUrl: './edit-product.component.css'
 })
-export default class EditProductComponent implements OnInit, OnDestroy {
+export default class EditProductComponent implements OnInit {
   public categoriesDepartaments = signal<CategoriesDepartment[]>(Object.values(CategoriesDepartment));
   public fb = inject(FormBuilder);
   public updateProductForm = this.fb.group({
@@ -36,7 +35,6 @@ export default class EditProductComponent implements OnInit, OnDestroy {
   public categories = signal<Category[]>([])
   public product = signal<Product>({} as Product);
 
-  private loadCategoriesSubs = new Subscription();
 
   public formSubmitted = signal<boolean>(false);
   public activatedRoute = inject(ActivatedRoute);
@@ -67,9 +65,6 @@ export default class EditProductComponent implements OnInit, OnDestroy {
         });
       }
     });
-  }
-  ngOnDestroy(): void {
-    this.loadCategoriesSubs.unsubscribe();
   }
 
   updateProduct() {
