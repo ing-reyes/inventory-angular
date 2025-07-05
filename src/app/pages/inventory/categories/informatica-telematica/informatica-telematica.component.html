@@ -1,1 +1,73 @@
-<p>informatica-telematica works!</p>
+<app-breadcrumbs title="Departamento de Informática y Telemática" />
+
+@if (loading()) {
+<div class="row animate fadeIn fast">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando...</h4>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <p class="mb-0">Por favor espere</p>
+        </div>
+    </div>
+</div>
+}
+
+<div class="row">
+    <div class="col-12 d-flex flex-row justify-content-end">
+        <a type="button" class="btn waves-effect waves-light btn-primary text-white" [routerLink]="['/dashboard/products/register']">
+            Agregar Producto
+        </a>
+    </div>
+</div>
+
+@if (!loading()) {
+<div class="row animate fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Total productos ({{ total() }})</h4>
+                <h6 class="card-subtitle">Productos registrados. Pagina ({{ page() }} )
+                </h6>
+
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Stock</th>
+                                <th>Categoría</th>
+                                <th>Descripción</th>
+                                <th class="text-nowrap w100">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @for (product of products(); track $index) {
+                            <tr>
+                                <td>{{product.name}}</td>
+                                <td>{{product.stock}}</td>
+                                <td>{{product.category}}</td>
+                                <td>{{product.description?product.description:"Sin descripción"}}</td>
+
+                                <td class="text-nowrap text-center">
+                                    <a [routerLink]="['/dashboard/products/edit', product.id]" class="cursor" data-toggle="tooltip"
+                                        data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i>
+                                    </a>
+                                    <a data-toggle="tooltip" data-original-title="Close"
+                                        (click)="removeProduct(product)">
+                                        <i class="fa fa-trash text-danger cursor"></i>
+                                    </a>
+
+                                </td>
+                            </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
