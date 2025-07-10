@@ -15,6 +15,7 @@ import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { HeaderComponent } from '../shared/header/header.component';
 import { SettingsService } from '@services/settings.service';
 import { FooterComponent } from '@shared/footer/footer.component';
+import { ModalDocumentComponent } from 'components/modal-document/modal-document.component';
 
 
 declare function customInitScript(): void;
@@ -23,7 +24,7 @@ declare function customInitScript(): void;
   selector: 'app-pages',
   standalone: true,
   imports: [
-    RouterOutlet, SidebarComponent, HeaderComponent, FooterComponent
+    RouterOutlet, SidebarComponent, HeaderComponent, FooterComponent, ModalDocumentComponent
   ],
   templateUrl: './pages.component.html',
   styles: ``,

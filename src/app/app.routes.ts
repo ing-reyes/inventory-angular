@@ -114,6 +114,15 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/inventory/categories/ingreso-egreso/ingreso-egreso.component'),
       },
 
+      {
+        path: 'dashboard/bienestar-social-gestion',
+        title: 'Gestion de Documentos',
+        data: {
+          title: 'Gestion de Documentos',
+        },
+        loadComponent: () => import('./pages/inventory/bienestar-social-gestion/bienestar-social-gestion.component'),
+      },
+
 
 
       // Productos

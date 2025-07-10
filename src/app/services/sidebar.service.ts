@@ -19,6 +19,7 @@ export class SidebarService {
       title: 'Administración',
       icon: 'mdi mdi-folder-lock-open',
       submenu: [
+        { title: "Gestion de Documentos", url: "./dashboard/bienestar-social-gestion" },
         { title: 'Usuarios', url: './dashboard/users' },
 
       ]

@@ -1,0 +1,29 @@
+<div class="modal-background-image animate fadeIn fast" [class.hidden]="modalImagenService.hiddenModal">
+    <div id="responsive-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-right: 17px;">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Upload Document</h4>
+                  <button type="button" class="close cursor" data-dismiss="modal" (click)="closeModal()" aria-label="Close" aria-hidden="true">×</button>
+              </div>
+              <div class="modal-body">
+                  <h3>Select a document</h3>
+
+                  <div class="text-center">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg" class="img-avatar img-circle" alt="doc">
+                  </div>
+                  <br>
+
+                  <input type="file" (change)="fileChangeEvent($event)" class="cursor">
+
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default waves-effect" (click)="closeModal()" data-dismiss="modal">Cancel</button>
+                  <button type="button" (click)="updateDocument()" class="btn btn-primary waves-effect waves-light">Update document</button>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
