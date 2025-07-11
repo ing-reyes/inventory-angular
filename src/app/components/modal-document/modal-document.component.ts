@@ -14,8 +14,8 @@ import { ModalType } from '../../types/types-modal';
 export class ModalDocumentComponent {
 
   public modalImagenService = inject( ModalImagenService );
-  private fileUploadService = inject( FileUploadService );
-  private sweetalertService = inject( SweetalertService );
+  private readonly fileUploadService = inject( FileUploadService );
+  private readonly sweetalertService = inject( SweetalertService );
   public documentSelected?:File;
   public docTemp = '';
 
